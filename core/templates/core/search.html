@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Search | {% endblock %}
+
+{% block content %}
+
+{% for post in posts %}
+    <h3>Posted {{ post.created_at | timesince }} ago</h3>
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.intro }}</p><br>
+    <a href="/details/{{post.slug}}/">Read more...</a>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Home | {% endblock %}
+
+{% block content %}
+
+{% for post in posts %}
+    <h3>Posted {{ post.created_at | timesince }} ago</h3>
+    {% if post.image %}
+        <img src="{{ post.image.url }}" alt="">
+    {% endif %}
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.intro }}</p><br>
+    <a href="/details/{{post.slug}}/">Read more...</a>
+{% endfor %}
+
+{% endblock %}

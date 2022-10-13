@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+
+{% block title %} {{post.title}} | {% endblock %}
+
+{% block content %}
+<h1>{{ post.title }}</h1>
+<p>{{ post.description }}</p>
+
+---<h3>Posted {{ post.created_at | timesince }} ago</h3>---
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+    <input type="submit" value="Submit Comment">
+</form>
+
+{% for comment in post.comments.all %}
+    <h2>{{ comment.name }}</h2> <h4>{{ comment.created_at | timesince }} ago</h4>
+    <h3>{{ comment.description }}</h3>
+{% empty %}
+    <h4>There no comments yet</h4>
+{% endfor %}
+
+{% endblock %}
